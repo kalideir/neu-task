@@ -1,19 +1,22 @@
 import { gql, useQuery } from '@apollo/client';
 import type { NextPage } from 'next';
+import styled from "@emotion/styled";
 import Head from 'next/head';
+import { PostsList } from '../components';
 
-const GET_POSTS = gql`
-  query GetPosts {
-    posts {
-      id
-      title
-      body
-    }
-  }
-`;
+const Header = styled.h1`
+font-size: 1.5rem;
+color: rgb(18 71 52 / 1);
+text-align: center;
+margin: 3rem auto;
+font-weight: 600;
+letter-spacing: 3px;
+text-transform: capitalize
+`
 
 const Posts: NextPage = () => {
-  const { data } = useQuery(GET_POSTS);
+
+
 
   return (
     <div>
@@ -21,13 +24,8 @@ const Posts: NextPage = () => {
         <title>Posts | Neulabs fullstack assignment</title>
       </Head>
       <main>
-        <h1>Post list</h1>
-        {data?.posts?.map(post => (
-          <article key={post.id}>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-          </article>
-        ))}
+        <Header>Post list</Header>
+        <PostsList />
       </main>
     </div>
   );
